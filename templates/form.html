@@ -71,6 +71,10 @@
             margin-bottom: 8px;
             color: #05527c;
         }
+        .input-error {
+        border-color: #de0000;
+        box-shadow: 0 0 8px rgba(255, 77, 77, 0.2);
+    }
 
         input[type="text"],
         input[type="number"],
@@ -359,33 +363,69 @@
         </form>
     
 
-    <script>
-        let currentSectionIndex = 0;
-        const sections = document.querySelectorAll('.form-section');
-
-        function showSection(index) {
-            sections.forEach((section, i) => {
-                section.classList.toggle('active', i === index);
-            });
-        }
-
-        function nextSection() {
-            if (currentSectionIndex < sections.length - 1) {
-                currentSectionIndex++;
-                showSection(currentSectionIndex);
+        <script>
+            let currentSectionIndex = 0;
+            const sections = document.querySelectorAll('.form-section');
+        
+            function showSection(index) {
+                sections.forEach((section, i) => {
+                    section.classList.toggle('active', i === index);
+                });
             }
-        }
-
-        function previousSection() {
-            if (currentSectionIndex > 0) {
-                currentSectionIndex--;
-                showSection(currentSectionIndex);
+        
+            function validateCurrentSection() {
+                const currentSection = sections[currentSectionIndex];
+                const inputs = currentSection.querySelectorAll('input[required], textarea[required]');
+                let allValid = true;
+        
+                // Remove previous error indicators
+                currentSection.querySelectorAll('.input-error').forEach((elem) => {
+                    elem.classList.remove('input-error');
+                });
+        
+                for (const input of inputs) {
+                    if (input.type === 'radio') {
+                        const name = input.name;
+                        const checked = document.querySelector(`input[name="${name}"]:checked`);
+                        if (!checked) {
+                            allValid = false;
+                            input.closest('div.form-group').querySelectorAll('input[type="radio"]').forEach((radio) => {
+                                radio.classList.add('input-error');
+                            });
+                        }
+                    } else if (!input.value.trim()) {
+                        allValid = false;
+                        input.classList.add('input-error');
+                    }
+                }
+        
+                return allValid;
             }
-        }
-
-        // Initially show the first section
-        showSection(currentSectionIndex);
-    </script>
+        
+            function nextSection() {
+                if (validateCurrentSection()) {
+                    if (currentSectionIndex < sections.length - 1) {
+                        currentSectionIndex++;
+                        showSection(currentSectionIndex);
+                    }
+                } else {
+                    // Optionally scroll to the first error field
+                    document.querySelector('.input-error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        
+            function previousSection() {
+                if (currentSectionIndex > 0) {
+                    currentSectionIndex--;
+                    showSection(currentSectionIndex);
+                }
+            }
+        
+            // Initially show the first section
+            showSection(currentSectionIndex);
+        </script>
+        
+        
 </body>
 
 </html>
