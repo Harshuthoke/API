@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,12 +58,11 @@
         }
 
         .form-section {
-            margin-bottom: 40px;
-            padding: 30px;
-            border: 1px solid #d1e6ea;
-            border-radius: 12px;
-            background-color: #f0faff;
-            box-sizing: border-box;
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
         }
 
         label {
@@ -141,203 +141,251 @@
             gap: 10px;
         }
 
-        .form-section:nth-child(odd) {
-            background-color: #e8f4fa;
-        }
-
-        /* Subtle animations */
-        .form-section {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .form-section:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .form-section:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        .form-section:nth-child(4) {
-            animation-delay: 0.6s;
-        }
-
-        .form-section:nth-child(5) {
-            animation-delay: 0.8s;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
         }
     </style>
 </head>
+
 <body>
-    <img src="https://static.wixstatic.com/media/e48a18_c949f6282e6a4c8e9568f40916a0c704~mv2.png/v1/crop/x_0,y_151,w_1920,h_746/fill/w_240,h_93,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/For%20Dark%20Theme.png" alt="DeepCytes Logo" class="logo">
+    <img src="https://static.wixstatic.com/media/e48a18_c949f6282e6a4c8e9568f40916a0c704~mv2.png/v1/crop/x_0,y_151,w_1920,h_746/fill/w_240,h_93,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_auto/For%20Dark%20Theme.png"
+        alt="DeepCytes Logo" class="logo">
 
     <div class="container">
         <h1>Mobile Device Information Form</h1>
         <form method="POST" action="/submit">
-        
-        <!-- Device Specifications -->
-        <div class="form-section">
-            <h2>Device Specifications</h2>
-            
-            <label for="model">Model:</label>
-            <input type="text" id="model" name="model">
-            
-            <label for="color">Color:</label>
-            <input type="text" id="color" name="color">
-            
-            <div class="form-group">
-                <label>With Safety Glass:</label>
-                <input type="radio" id="safety_glass_yes" name="safety_glass" value="yes">
-                <label for="safety_glass_yes">Yes</label>
-                <input type="radio" id="safety_glass_no" name="safety_glass" value="no">
-                <label for="safety_glass_no">No</label>
+            <!-- Device Specifications -->
+            <div class="form-section active">
+                <h2>Device Specifications</h2>
+
+                <label for="model">Model:</label>
+                <input type="text" id="model" name="model"required>
+
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color"required>
+
+                <div class="form-group">
+                    <label>With Safety Glass:</label>
+                    <input type="radio" id="safety_glass_yes" name="safety_glass" value="yes"required>
+                    <label for="safety_glass_yes">Yes</label>
+                    <input type="radio" id="safety_glass_no" name="safety_glass" value="no"required>
+                    <label for="safety_glass_no">No</label>
+                </div>
+
+                <div class="form-group">
+                    <label>With Back Cover:</label>
+                    <input type="radio" id="back_cover_yes" name="back_cover" value="yes"required>
+                    <label for="back_cover_yes">Yes</label>
+                    <input type="radio" id="back_cover_no" name="back_cover" value="no"required>
+                    <label for="back_cover_no">No</label>
+                </div>
+
+                <label for="ram">RAM:</label>
+                <input type="text" id="ram" name="ram"required>
+
+                <label for="internal_memory">Internal Memory:</label>
+                <input type="text" id="internal_memory" name="internal_memory"required>
+
+                <label for="camera_specs">Camera (with Specs):</label>
+                <textarea id="camera_specs" name="camera_specs"required></textarea>
+
+                <div class="form-group">
+                    <label>Check if all cameras are present:</label>
+                    <input type="radio" id="cameras_check_yes" name="cameras_check" value="yes"required>
+                    <label for="cameras_check_yes">Yes</label>
+                    <input type="radio" id="cameras_check_no" name="cameras_check" value="no"required>
+                    <label for="cameras_check_no">No</label>
+                </div>
+
+                <label for="battery_percentage">Battery Percentage:</label>
+                <input type="number" id="battery_percentage" name="battery_percentage" min="0" max="100"required>
+
+                <label for="sim_slots">Number of SIM card slots:</label>
+                <input type="number" id="sim_slots" name="sim_slots" min="1"required>
+
+                <label for="sim_provider">SIM Cards and their Providers:</label>
+                <textarea id="sim_provider" name="sim_provider"required></textarea>
+
+                <div class="button-container">
+                    <button type="button" onclick="nextSection()">Next</button>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>With Back Cover:</label>
-                <input type="radio" id="back_cover_yes" name="back_cover" value="yes">
-                <label for="back_cover_yes">Yes</label>
-                <input type="radio" id="back_cover_no" name="back_cover" value="no">
-                <label for="back_cover_no">No</label>
-            </div>
-            
-            <label for="ram">RAM:</label>
-            <input type="text" id="ram" name="ram">
-            
-            <label for="internal_memory">Internal Memory:</label>
-            <input type="text" id="internal_memory" name="internal_memory">
-            
-            <label for="camera_specs">Camera (with Specs):</label>
-            <textarea id="camera_specs" name="camera_specs"></textarea>
-            
-            <div class="form-group">
-                <label>Check if all cameras are present:</label>
-                <input type="radio" id="cameras_check_yes" name="cameras_check" value="yes">
-                <label for="cameras_check_yes">Yes</label>
-                <input type="radio" id="cameras_check_no" name="cameras_check" value="no">
-                <label for="cameras_check_no">No</label>
-            </div>
+            <!-- Connectivity & Storage -->
+            <div class="form-section">
+                <h2>Connectivity & Storage</h2>
 
-            <label for="battery_percentage">Battery Percentage:</label>
-            <input type="number" id="battery_percentage" name="battery_percentage" min="0" max="100">
-            
-            <label for="sim_slots">Number of SIM card slots:</label>
-            <input type="number" id="sim_slots" name="sim_slots" min="1">
-            
-            <label for="sim_provider">SIM Cards and their Providers:</label>
-            <textarea id="sim_provider" name="sim_provider"></textarea>
-        </div>
+                <div class="form-group">
+                    <label>Was it connected to Wi-Fi?</label>
+                    <input type="radio" id="wifi_connected_yes" name="wifi_connected" value="yes"required>
+                    <label for="wifi_connected_yes">Yes</label>
+                    <input type="radio" id="wifi_connected_no" name="wifi_connected" value="no"required>
+                    <label for="wifi_connected_no">No</label>
+                </div>
 
-        <!-- Connectivity & SD Card -->
-        <div class="form-section">
-            <h2>Connectivity & Storage</h2>
-            
-            <div class="form-group">
-                <label>Was it connected to Wi-Fi?</label>
-                <input type="radio" id="wifi_connected_yes" name="wifi_connected" value="yes">
-                <label for="wifi_connected_yes">Yes</label>
-                <input type="radio" id="wifi_connected_no" name="wifi_connected" value="no">
-                <label for="wifi_connected_no">No</label>
+                <div class="form-group">
+                    <label>Was Bluetooth on or off?</label>
+                    <input type="radio" id="bluetooth_on" name="bluetooth_status" value="on"required>
+                    <label for="bluetooth_on">On</label>
+                    <input type="radio" id="bluetooth_off" name="bluetooth_status" value="off"required>
+                    <label for="bluetooth_off">Off</label>
+                </div>
+
+                <div class="form-group">
+                    <label>Is the SD card present?</label>
+                    <input type="radio" id="sd_card_yes" name="sd_card" value="yes"required>
+                    <label for="sd_card_yes">Yes</label>
+                    <input type="radio" id="sd_card_no" name="sd_card" value="no"required>
+                    <label for="sd_card_no">No</label>
+                </div>
+
+                <label for="sd_capacity">SD Card Storage Capacity (if present):</label>
+                <input type="text" id="sd_capacity" name="sd_capacity"required>
+
+                <label for="additional_storage">Additional Storage Devices:</label>
+                <textarea id="additional_storage" name="additional_storage"required></textarea>
+
+                <div class="button-container">
+                    <button type="button" onclick="previousSection()">Previous</button>
+                    <button type="button" onclick="nextSection()">Next</button>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Was Bluetooth on or off?</label>
-                <input type="radio" id="bluetooth_on" name="bluetooth_status" value="on">
-                <label for="bluetooth_on">On</label>
-                <input type="radio" id="bluetooth_off" name="bluetooth_status" value="off">
-                <label for="bluetooth_off">Off</label>
-            </div>
-
-            <div class="form-group">
-                <label>Is the SD card present?</label>
-                <input type="radio" id="sd_card_yes" name="sd_card" value="yes">
-                <label for="sd_card_yes">Yes</label>
-                <input type="radio" id="sd_card_no" name="sd_card" value="no">
-                <label for="sd_card_no">No</label>
-            </div>
-
-            <label for="sd_capacity">SD Card Storage Capacity (if present):</label>
-            <input type="text" id="sd_capacity" name="sd_capacity">
-        </div>
-
-        <!-- System Information -->
-        <div class="form-section">
-            <h2>System Information</h2>
-            
-            <label for="mobile_uptime">Mobile Uptime:</label>
-            <input type="text" id="mobile_uptime" name="mobile_uptime">
-            
-            <label for="time_zone">Time Zone:</label>
-            <input type="text" id="time_zone" name="time_zone">
-            
-            <label for="language">Language:</label>
-            <input type="text" id="language" name="language">
-            
-            <label for="installed_apps">Installed Apps (with names):</label>
-            <textarea id="installed_apps" name="installed_apps"></textarea>
-            
-            <div class="form-group">
-                <label>Was Geo-location on?</label>
-                <input type="radio" id="geo_location_yes" name="geo_location" value="yes">
-                <label for="geo_location_yes">Yes</label>
-                <input type="radio" id="geo_location_no" name="geo_location" value="no">
-                <label for="geo_location_no">No</label>
-            </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <label for="build_no">Build Number:</label>
-                <input type="text" id="build_no" name="build_no"><br><br>
+            <div class="form-section">
+                <h2>Connectivity & Storage</h2>
                 
-                <label for="kernel_version">Kernel Version:</label>
-                <input type="text" id="kernel_version" name="kernel_version"><br><br>
+                <div class="form-group">
+                    <label>Was it connected to Wi-Fi?</label>
+                    <input type="radio" id="wifi_connected_yes" name="wifi_connected" value="yes" required>
+                    <label for="wifi_connected_yes">Yes</label>
+                    <input type="radio" id="wifi_connected_no" name="wifi_connected" value="no" required>
+                    <label for="wifi_connected_no">No</label>
+                </div>
+    
+                <div class="form-group">
+                    <label>Was Bluetooth on or off?</label>
+                    <input type="radio" id="bluetooth_on" name="bluetooth_status" value="on" required>
+                    <label for="bluetooth_on">On</label>
+                    <input type="radio" id="bluetooth_off" name="bluetooth_status" value="off" required>
+                    <label for="bluetooth_off">Off</label>
+                </div>
+    
+                <div class="form-group">
+                    <label>Is the SD card present?</label>
+                    <input type="radio" id="sd_card_yes" name="sd_card" value="yes" required>
+                    <label for="sd_card_yes">Yes</label>
+                    <input type="radio" id="sd_card_no" name="sd_card" value="no" required>
+                    <label for="sd_card_no">No</label>
+                </div>
+    
+                <label for="sd_capacity">SD Card Storage Capacity (if present):</label>
+                <input type="text" id="sd_capacity" name="sd_capacity" required>
+
+                <div class="button-container">
+                    <button type="button" onclick="previousSection()">Previous</button>
+                    <button type="button" onclick="nextSection()">Next</button>
+                </div>
             </div>
-        </div>
+    
+            <!-- System Information -->
+            <div class="form-section">
+                <h2>System Information</h2>
+                
+                <label for="mobile_uptime">Mobile Uptime:</label>
+                <input type="text" id="mobile_uptime" name="mobile_uptime" required>
+                
+                <label for="time_zone">Time Zone:</label>
+                <input type="text" id="time_zone" name="time_zone" required>
+                
+                <label for="language">Language:</label>
+                <input type="text" id="language" name="language" required>
+                
+                <label for="installed_apps">Installed Apps (with names):</label>
+                <textarea id="installed_apps" name="installed_apps" required></textarea>
+                
+                <div class="form-group">
+                    <label>Was Geo-location on?</label>
+                    <input type="radio" id="geo_location_yes" name="geo_location" value="yes" required>
+                    <label for="geo_location_yes">Yes</label>
+                    <input type="radio" id="geo_location_no" name="geo_location" value="no" required>
+                    <label for="geo_location_no">No</label>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label for="build_no">Build Number:</label>
+                    <input type="text" id="build_no" name="build_no" required><br><br>
+                    
+                    <label for="kernel_version">Kernel Version:</label>
+                    <input type="text" id="kernel_version" name="kernel_version" required><br><br>
+                </div>
 
-        <!-- Network & Identifiers -->
-        <div class="form-section">
-            <h2>Network & Identifiers</h2>
-            
-            <label for="iccid">ICCID:</label>
-            <input type="text" id="iccid" name="iccid">
-            
-            <label for="imsi">IMSI:</label>
-            <input type="text" id="imsi" name="imsi">
-            
-            <label for="meid">MEID:</label>
-            <input type="text" id="meid" name="meid">
-            
-            <div class="form-group">
-                <label>Was it in Airplane Mode?</label>
-                <input type="radio" id="airplane_mode_yes" name="airplane_mode" value="yes">
-                <label for="airplane_mode_yes">Yes</label>
-                <input type="radio" id="airplane_mode_no" name="airplane_mode" value="no">
-                <label for="airplane_mode_no">No</label>
+                <div class="button-container">
+                    <button type="button" onclick="previousSection()">Previous</button>
+                    <button type="button" onclick="nextSection()">Next</button>
+                </div>
             </div>
-        </div>
+    
+            <!-- Network & Identifiers -->
+            <div class="form-section">
+                <h2>Network & Identifiers</h2>
+                
+                <label for="iccid">ICCID:</label>
+                <input type="text" id="iccid" name="iccid"required>
+                
+                <label for="imsi">IMSI:</label>
+                <input type="text" id="imsi" name="imsi" required>
+                
+                <label for="meid">MEID:</label>
+                <input type="text" id="meid" name="meid" required>
+    
+                
+                <div class="form-group">
+                    <label>Was it in Airplane Mode?</label>
+                    <input type="radio" id="airplane_mode_yes" name="airplane_mode" value="yes"  required>
+    
+                    <label for="airplane_mode_yes">Yes</label>
+                    <input type="radio" id="airplane_mode_no" name="airplane_mode" value="no" required>
+                    <label for="airplane_mode_no">No</label>
+                </div>
+                <div class="button-container">
+                    <button type="button" onclick="previousSection()">Previous</button>
+                    <button type="submit">Submit</button>
+                </div>
+                
+            </div>
 
-        <!-- File Upload Section -->
-        <!--<div class="form-section">
-            <h2>Upload Section</h2>
-            
-            <label for="upload_image">Upload image:</label>
-            <input type="file" id="upload_image" name="upload_image">
-            
-            <label for="device_photos">Upload photos of device:</label>
-            <input type="file" id="device_photos" name="device_photos" multiple>
-        </div>
-    -->
+                
+            </div>
+        </form>
+    
 
-        <!-- Submit Button -->
-        <button type="submit">Submit</button>
-    </div>
-</form>
+    <script>
+        let currentSectionIndex = 0;
+        const sections = document.querySelectorAll('.form-section');
+
+        function showSection(index) {
+            sections.forEach((section, i) => {
+                section.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSection() {
+            if (currentSectionIndex < sections.length - 1) {
+                currentSectionIndex++;
+                showSection(currentSectionIndex);
+            }
+        }
+
+        function previousSection() {
+            if (currentSectionIndex > 0) {
+                currentSectionIndex--;
+                showSection(currentSectionIndex);
+            }
+        }
+
+        // Initially show the first section
+        showSection(currentSectionIndex);
+    </script>
 </body>
-</html>
 
+</html>
