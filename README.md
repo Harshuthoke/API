@@ -27,7 +27,7 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Harshuthoke/Pre_Imaging_API.git
+   git clone https://github.com/Harshuthoke/API.git
    ```
 
 2. Navigate to the cloned directory:
