@@ -15,12 +15,11 @@
 
 - Python 3.8 or higher
 - Required Python packages (can be installed via `requirements.txt`):
-  - numpy
-  - pandas
-  - pillow
-  - scikit-learn
-  - opencv-python
+  - Flask
+  = Flask-PyMongo
   - pymongo
+  - dnspython
+
 
 ## Installation
 
@@ -33,7 +32,7 @@
 2. Navigate to the cloned directory:
 
    ```bash
-   cd Pre_Imaging_API
+   cd API
    ```
 
 3. Install the required dependencies:
