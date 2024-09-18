@@ -4,36 +4,35 @@ This project is a Flask-based web application designed to capture images at spec
 
 ## Features
 
-- Capture images at specific angles (0°, 30°, 60°, 90°, and after flipping the phone).
-- Angle detection with a tolerance of 10°.
-- Images are stored in MongoDB using GridFS.
-- Visual feedback on the camera screen, including a red guiding line for angle reference.
-- A progress tracker showing how many images have been captured.
-- Once all images are captured, a "Next" button allows the user to proceed to the next step.
+- Load and preprocess image datasets.
+- Resize images and perform normalization.
+- Easy integration into existing machine learning pipelines.
+- Flexible configuration for different imaging tasks.
 
-## Technology Stack
+## Requirements
 
-- **Backend**: Flask, Flask-PyMongo
-- **Frontend**: HTML, CSS, JavaScript
-- **Database**: MongoDB with GridFS for image storage
-- **Dependencies**: OpenCV for angle detection
+- Python 3.8 or higher
+- Required Python packages (can be installed via `requirements.txt`):
+  - numpy
+  - pandas
+  - pillow
+  - scikit-learn
+  - opencv-python
+  - pymongo
 
-## Prerequisites
+## Installation
 
-To run this application, you need the following:
-
-1. Python 3.x installed on your system.
-2. MongoDB Atlas account and connection details.
-3. Camera access enabled on the browser/device.
-
-## Setup Instructions
-
-1. **Clone the repository:**
+1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/crime-scene-capture.git
-   cd crime-scene-capture
-Install dependencies:
+   git clone https://github.com/Harshuthoke/API.git
+   ```
+
+2. Navigate to the cloned directory:
+
+   ```bash
+   cd Pre_Imaging_API
+   ```
 
 Install the required Python libraries by running:
 
