@@ -1,77 +1,76 @@
-# Pre_Imaging_API
+# Crime Scene Capture Application
 
-## Description
-
-**Pre_Imaging_API** is a tool designed for performing pre-imaging tasks on datasets. It is intended to streamline the data preparation process before it is fed into machine learning or computer vision models.
+This project is a Flask-based web application designed to capture images at specific angles for crime scene documentation. The user is guided to take 9 photos at various angles, including flipping the phone. The images are captured via a camera, and the correct angles are validated by the application. Once all images are captured, the user can proceed to the next step.
 
 ## Features
 
-- Load and preprocess image datasets.
-- Resize images and perform normalization.
-- Easy integration into existing machine learning pipelines.
-- Flexible configuration for different imaging tasks.
+- Capture images at specific angles (0°, 30°, 60°, 90°, and after flipping the phone).
+- Angle detection with a tolerance of 10°.
+- Images are stored in MongoDB using GridFS.
+- Visual feedback on the camera screen, including a red guiding line for angle reference.
+- A progress tracker showing how many images have been captured.
+- Once all images are captured, a "Next" button allows the user to proceed to the next step.
 
-## Requirements
+## Technology Stack
 
-- Python 3.8 or higher
-- Required Python packages (can be installed via `requirements.txt`):
-  - numpy
-  - pandas
-  - pillow
-  - scikit-learn
-  - opencv-python
-  - pymongo
+- **Backend**: Flask, Flask-PyMongo
+- **Frontend**: HTML, CSS, JavaScript
+- **Database**: MongoDB with GridFS for image storage
+- **Dependencies**: OpenCV for angle detection
 
-## Installation
+## Prerequisites
 
-1. Clone the repository:
+To run this application, you need the following:
 
-   ```bash
-   git clone https://github.com/Harshuthoke/API.git
-   ```
+1. Python 3.x installed on your system.
+2. MongoDB Atlas account and connection details.
+3. Camera access enabled on the browser/device.
 
-2. Navigate to the cloned directory:
+## Setup Instructions
 
-   ```bash
-   cd Pre_Imaging_API
-   ```
-
-3. Install the required dependencies:
+1. **Clone the repository:**
 
    ```bash
-   pip install -r requirements.txt
-   ```
+   git clone https://github.com/your-username/crime-scene-capture.git
+   cd crime-scene-capture
+Install dependencies:
 
-## MongoDB Configuration
+Install the required Python libraries by running:
 
-To change the MongoDB URL, modify the `MONGO_URI` variable in the configuration file (usually found in `config.py` or similar file):
+bash
+Copy code
+pip install -r requirements.txt
+Set up MongoDB Atlas:
 
-```python
-MONGO_URI = "your_mongodb_url_here"
-```
+Create a MongoDB Atlas account at mongodb.com.
+Create a new cluster and database named Image_db.
+Replace the MONGO_URI in the app.py file with your own connection string.
+Run the application:
 
-Make sure to update this with your MongoDB connection string.
+Run the Flask app using the following command:
 
-## Usage
+bash
+Copy code
+python app.py
+Access the application:
 
-1. Import the necessary modules from the package in your Python project.
-2. Set up configuration parameters for image preprocessing.
-3. Call the appropriate functions to start preprocessing.
+Open your browser and go to http://127.0.0.1:5000/.
 
-Example:
+How to Use
+When you open the application, you will see a prompt to capture an image at a specific angle (e.g., 0°).
+Align your camera according to the angle, and click the "Capture" button.
+The app will validate the angle and guide you through the next angles.
+After capturing all images, click the "Next" button to proceed to the next step.
+Files
+app.py: Main Flask application code, handling the backend logic, angle detection, and image uploads.
+templates/index.html: Frontend for the camera capture interface, progress tracker, and feedback.
+static/css/style.css: Styling for the user interface.
+requirements.txt: List of required Python libraries.
+Next Steps
+After capturing all images, the user is redirected to the following URL: https://api-bcft.vercel.app/. You can modify the logic in app.py for handling the next steps.
 
-```python
-from pre_imaging_api import ImagePreprocessor
+Dependencies
+Make sure to install the dependencies listed in the requirements.txt file.
 
-# Initialize the image preprocessor
-processor = ImagePreprocessor()
-
-# Preprocess your dataset
-processed_images = processor.preprocess_images(image_folder='path_to_images', output_size=(128, 128))
-```
-
-## File Structure
-
-- **pre_imaging_api/**: Core API for pre-imaging tasks.
-- **requirements.txt**: List of required Python libraries.
-- **example_usage.py**: Example script demonstrating the usage of the API.
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
