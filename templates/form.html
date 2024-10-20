@@ -159,8 +159,28 @@
     <div class="container">
         <h1>Mobile Device Information Form</h1>
         <form method="POST" action="/submit">
-            <!-- Device Specifications -->
+            <!-- Case Information -->
             <div class="form-section active">
+                <h2>Case Specifications</h2>
+
+                <label for="case_number">Case Number:</label>
+                <input type="text" id="case_number" name="case_number" required>
+
+                <label for="date_of_report">Date of Report:</label>
+                <input type="text" id="date_of_report" name="date_of_report" required>
+
+                <label for="report_prepared_by">Report Prepared By (Name and Title):</label>
+                <input type="text" id="report_prepared_by" name="report_prepared_by" required><br><br>
+
+                
+
+                <div class="button-container">
+                    <button type="button" onclick="nextSection()">Next</button>
+                </div>
+            </div>
+
+            <!-- Device Specifications -->
+            <div class="form-section">
                 <h2>Device Specifications</h2>
 
                 <label for="model">Model:</label>
@@ -247,8 +267,7 @@
                 <label for="sd_capacity">SD Card Storage Capacity (if present):</label>
                 <input type="text" id="sd_capacity" name="sd_capacity" required>
 
-                <label for="additional_storage">Additional Storage Devices:</label>
-                <textarea id="additional_storage" name="additional_storage" required></textarea>
+                
 
                 <div class="button-container">
                     <button type="button" onclick="previousSection()">Previous</button>
